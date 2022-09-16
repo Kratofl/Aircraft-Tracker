@@ -1,6 +1,8 @@
 <body>
   <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
+  <div class="container pt-4" style="position: relative; padding-inline: 0;">
+    <div [@routeAnimations]="getRouteAnimationData()">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </body>
