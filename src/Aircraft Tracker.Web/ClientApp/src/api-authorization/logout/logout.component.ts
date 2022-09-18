@@ -10,8 +10,7 @@ import { LogoutActions, ApplicationPaths, ReturnUrlType } from '../api-authoriza
 // user clicks on the logout button on the LoginMenu component.
 @Component({
   selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  templateUrl: './logout.component.html'
 })
 export class LogoutComponent implements OnInit {
   public message = new BehaviorSubject<string | null>(null);
