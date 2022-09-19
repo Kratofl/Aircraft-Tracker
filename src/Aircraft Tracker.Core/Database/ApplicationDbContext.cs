@@ -13,6 +13,8 @@ namespace Aircraft_Tracker.Core.Database
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
+        public DbSet<ApplicationUser> Users { get; set; }
+
         public DbSet<MarkedFlight> MarkedFlights { get; set; }
 
         public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
