@@ -1,3 +1,6 @@
+using Aircraft_Tracker.Core.Database.Tables;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,42 +10,63 @@ using System.Threading.Tasks;
 
 namespace Aircraft_Tracker.Core.Database.Manager
 {
-    public class AircraftManager {
-        
-        public Tuple<bool, string> AddNewMark(string userEmail, string flightNr) {
-            using var db = new ApplcationDbContext();
+    public class AircraftManager
+    {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IDbContextFactory<ApplicationDbContext> _context;
 
-            var user = db.Users.AsNoTracking().FirstOrDefault(x => x.NormalizedEmail == userEmail.ToUpper());
+        public AircraftManager(IDbContextFactory<ApplicationDbContext> context, UserManager<ApplicationUser> userManager)
+        {
+            this._context = context;
+            this._userManager = userManager;
+        }
 
-            var markedFlight = new MarkedFlight{
-                FlightNr = flightNr;
-                User = user;
-            }
+        public async Task<Tuple<bool, string>> AddNewMarkAsync(string userEmail, string flightNr)
+        {
+            using var db = _context.CreateDbContext();
+            var user = await _userManager.FindByEmailAsync(userEmail);
 
+            var markedFlight = new MarkedFlight
+            {
+                FlightNr = flightNr,
+                User = user,
+            };
 
-            try {
+            try
+            {
                 db.MarkedFlights.Add(markedFlight);
                 db.SaveChanges();
-                return Tuple.create(true, "Marking flight was successful.");
-            } catch (Exception e) {
-                return Tuple.create(false, "Marking flight has failed.");
+                return Tuple.Create(true, "Marking flight was successful.");
+            }
+            catch (Exception e)
+            {
+                return Tuple.Create(false, "Marking flight has failed.");
             }
         }
 
-        public Tuple<bool, string> RemoveMark(string userMail, Guid markedFlightId) {
-            using var db = new ApplcationDbContext();
-
-            var user = db.Users.AsNoTracking().FirstOrDefault(x => x.NormalizedEmail == userEmail.ToUpper());
+        public async Task<Tuple<bool, string>> RemoveMarkAsync(string userEmail, Guid markedFlightId)
+        {
+            using var db = _context.CreateDbContext();
+            var user = await _userManager.FindByEmailAsync(userEmail);
 
             var markedFlight = db.MarkedFlights.AsNoTracking().FirstOrDefault(x => x.Id == markedFlightId);
 
-            try {
+            if (markedFlight == null)
+            {
+                return Tuple.Create(false, "Marked flight could not be found");
+            }
+
+            try
+            {
                 db.MarkedFlights.Remove(markedFlight);
                 db.SaveChanges();
-                return Tuple.create(true, "Removing mark was successful");
-            } catch (Exception e) {
-                return Tuple.create(false, "Removing mark has failed");
+                return Tuple.Create(true, "Removing mark was successful");
             }
+            catch (Exception e)
+            {
+                return Tuple.Create(false, "Removing mark has failed");
+            }
+
         }
     }
 }
