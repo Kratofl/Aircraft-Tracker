@@ -39,6 +39,30 @@ namespace Aircraft_Tracker.Web.Controllers.api
             });
         }
 
+        [HttpDelete]
+        [Route("mark")]
+        // .../api/aircraft/mark/$id
+        public async Task<IActionResult> DeleteMarkedAircraft(string id)
+        {
+            var userEmail = User.Identity.Name;
+
+            var result = _aircraftManager.RemoveMark(userMail, id);
+
+            if (result.Item1)
+            {
+                return Ok(new {
+                    Success = true;
+                    Result = "You have successfully unmarked a flight";
+                });
+            }
+            
+            return BadRequest(new {
+                Success = false;
+                ErrorCode = "";
+                ErrorMessage = result.Item2;
+            });
+        }
+
         public class MarkAircraftInput 
         {
             [Required]
