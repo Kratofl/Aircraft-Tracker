@@ -21,7 +21,7 @@ namespace Aircraft_Tracker.Core.Api
             var response = await this._httpClient.GetAsync($"{this._httpClient.BaseAddress}{this.FormatRelativePath(relativePath)}");
             return response.Content.ReadAsStringAsync().Result;
         }
-        public async Task<string> GetRequestAsync(string relativePath, List<KeyValuePair<string, string>> parameters)
+        public async Task<string> GetRequestAsync(string relativePath, Dictionary<string, string> parameters)
         {
             string parametersString = this.GetParamtersAsString(parameters);
 
@@ -34,7 +34,7 @@ namespace Aircraft_Tracker.Core.Api
         //public string PostRequest(string relativePath, string jsonBody);
         //public string PostRequest(string relativePath, Dictionary<string, string> parameters, string jsonBody);
 
-        private string GetParamtersAsString(List<KeyValuePair<string, string>> parameters)
+        private string GetParamtersAsString(Dictionary<string, string> parameters)
         {
             List<string> strings = new List<string>();
             foreach (var parameter in parameters)

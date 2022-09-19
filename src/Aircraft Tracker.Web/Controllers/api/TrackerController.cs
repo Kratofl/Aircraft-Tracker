@@ -12,10 +12,10 @@ namespace Aircraft_Tracker.Web.Controllers.api
         // .../api/tracker/get
         public async Task<IActionResult> GetAsync()
         {
-            var openSky = new OpenSky();
-            List<KeyValuePair<string, string>> test = new List<KeyValuePair<string, string>>();
-            test.Add(new KeyValuePair<string, string>("test", "value"));
-            _ = await openSky.GetRequestAsync("test", test);
+        //    var openSky = new OpenSky();
+        //    List<KeyValuePair<string, string>> test = new List<KeyValuePair<string, string>>();
+        //    test.Add(new KeyValuePair<string, string>("test", "value"));
+        //    _ = await openSky.GetRequestAsync("test", test);
 
             return Ok();
         }
