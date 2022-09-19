@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginMenuComponent } from './login-menu/login-menu.component';
 import { LoginComponent } from './login/login.component';
@@ -6,11 +6,13 @@ import { LogoutComponent } from './logout/logout.component';
 import { RouterModule } from '@angular/router';
 import { ApplicationPaths } from './api-authorization.constants';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from '../app/modules/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
+    MaterialModule,
     RouterModule.forChild(
       [
         { path: ApplicationPaths.Register, component: LoginComponent },

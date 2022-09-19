@@ -1,0 +1,136 @@
+@use 'sass:map';
+@use './node_modules/@angular/material/core/theming/palette';
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$theme-palette: (
+    50: hsl(44, 100%, 99%),
+    100: hsl(44, 100%, 89%),
+    200: hsl(44, 100%, 79%),
+    300: hsl(44, 100%, 69%),
+    400: hsl(44, 100%, 59%),
+    500: hsl(44, 100%, 49%),
+    600: hsl(44, 100%, 39%),
+    700: hsl(44, 100%, 29%),
+    800: hsl(44, 100%, 19%),
+    900: hsl(44, 100%, 9%),
+    A100: #FFFFFF,
+    A200: #FFF5EA,
+    A400: #FFDDB7,
+    A700: #FFD29D,
+    contrast: (
+        50: black,
+        100: black,
+        200: black,
+        300: black,
+        400: black,
+        500: black,
+        600: black,
+        700: black,
+        800: black,
+        900: black,
+        A100: black,
+        A200: black,
+        A400: black,
+        A700: black,
+    )
+);
+$black-palette: (
+    100: black,
+    500: black,
+    700: black,
+    contrast: (
+        100: white,
+        500: white,
+        700: white,
+    )
+);
+$white-palette: (
+    100: white,
+    500: white,
+    700: white,
+    contrast: (
+        100: black,
+        500: black,
+        700: black,
+    )
+);
+
+$dark-primary: mat-palette($theme-palette);
+$dark-accent: mat-palette($black-palette);
+
+$dark-theme-background-palette: (
+  status-bar: black,
+  app-bar:    map.get($mat-grey, 900),
+  background: hsl(0, 0%, 15%),
+  hover:      rgba(white, 0.04),
+  card:       map.get($mat-grey, 900),
+  dialog:     map.get($mat-grey, 900),
+  disabled-button: rgba(white, 0.12),
+  raised-button: hsl(0, 0%, 20%),
+  focused-button: $light-focused,
+  selected-button: map.get($mat-grey, 900),
+  selected-disabled-button: map.get($mat-grey, 800),
+  disabled-button-toggle: black,
+  unselected-chip: map.get($mat-grey, 700),
+  disabled-list-option: rgba(white, 0.12),
+  tooltip: map.get($mat-grey, 700),
+);
+$dark-theme: (
+  primary: $dark-primary,
+  accent: $dark-accent,
+  warn: mat-palette($mat-pink),
+  is-dark: true,
+  foreground: palette.$dark-theme-foreground-palette,
+  background: $dark-theme-background-palette,
+);
+
+@include angular-material-theme($dark-theme);
+
+.mat-cell {
+  border-bottom: 0;
+}
+th.mat-header-cell {
+  color: var(--bs-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.mat-paginator {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html, body {
+  background-color: map.get($dark-theme-background-palette, background);
+  --bs-body-color: white;
+}
+
+btn {
+  color: map.get($mat-grey, 700);
+}
+.btn:hover {
+  color: hsla(0, 0%, 60%);
+}
+
+// Other Styles
+.mat-toolbar .btn {
+  font-weight: 500;
+}
+
+table {
+  width: 100%;
+}
+
+.br-05 {
+  border-radius: .5rem;
+  overflow: auto;
+}
+
+.full-screen-modal {
+  max-width: none;
+}
+
+.text-warn {
+  color: map.get(mat-palette($mat-pink), 500),
+}
+
+// "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
