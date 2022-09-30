@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aircraft_Tracker.Core.Api.exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,12 @@ namespace Aircraft_Tracker.Core.Api
 
         public async Task<string> GetRequestAsync(string relativePath)
         {
-            var response = await this._httpClient.GetAsync($"{this._httpClient.BaseAddress}{this.FormatRelativePath(relativePath)}");
+            var response = await this._httpClient.GetAsync($"{this._httpClient.BaseAddress}/{this.FormatRelativePath(relativePath)}");
+            if (!response.IsSuccessStatusCode)
+            {
+                var message = response.Content.ReadAsStringAsync().Result;
+                throw new RequestNotSuccessfullException(message);
+            }
             return response.Content.ReadAsStringAsync().Result;
         }
         public async Task<string> GetRequestAsync(string relativePath, Dictionary<string, string> parameters)

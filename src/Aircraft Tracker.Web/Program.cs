@@ -1,3 +1,4 @@
+using Aircraft_Tracker.Core.Api.OpenSky;
 using Aircraft_Tracker.Core.Database;
 using Aircraft_Tracker.Core.Database.Tables;
 using Microsoft.AspNetCore.Authentication;
@@ -31,6 +32,8 @@ builder.Services.AddControllersWithViews()
         configure.JsonSerializerOptions.AllowTrailingCommas = true;
     });
 builder.Services.AddRazorPages();
+
+builder.Services.AddSingleton<OpenSky>();
 
 //builder.Services.AddScoped<ApiManager>();
 

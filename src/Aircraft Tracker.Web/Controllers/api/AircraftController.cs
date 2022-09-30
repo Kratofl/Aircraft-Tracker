@@ -28,14 +28,10 @@ namespace Aircraft_Tracker.Web.Controllers.api
 
             if (result.Item1)
             {
-                return Ok(new {
-                    Success = true,
-                    Result = result.Item2,
-                });
+                return Ok(result.Item2);
             }
             
             return BadRequest(new {
-                Success = false,
                 ErrorCode = "",
                 ErrorMessage = result.Item2,
             });
@@ -55,14 +51,10 @@ namespace Aircraft_Tracker.Web.Controllers.api
 
             if (result.Item1)
             {
-                return Ok(new {
-                    Success = true,
-                    Result = result.Item2,
-                });
+                return Ok(result.Item2);
             }
             
             return BadRequest(new {
-                Success = false,
                 ErrorCode = "",
                 ErrorMessage = result.Item2,
             });
