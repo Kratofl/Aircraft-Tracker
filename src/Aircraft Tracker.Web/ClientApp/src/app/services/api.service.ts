@@ -17,4 +17,12 @@ export class ApiService {
       .set('end', end);
     return this.http.get<Flight[]>(ApiService.BASE_URL + "flights/all", { params })
   }
+
+  public getAllFlightsOfAircraft(icao24: string, begin: number, end: number) {
+    const params = new HttpParams()
+      .set('icao24', icao24)
+      .set('begin', begin)
+      .set('end', end);
+    return this.http.get<Flight[]>(ApiService.BASE_URL + "flights/aircraft", { params })
+  }
 }
