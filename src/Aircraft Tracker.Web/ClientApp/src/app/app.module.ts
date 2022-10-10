@@ -14,6 +14,7 @@ import { TrackerMapComponent } from './tracker-map/tracker-map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { AuthorizeService } from '../api-authorization/authorize.service';
+import { ApiService } from './services/api.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Home', animation: "Home" } },
@@ -39,7 +40,8 @@ const routes: Routes = [
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-    AuthorizeService
+    AuthorizeService,
+    ApiService,
   ],
   exports: [RouterModule],
   bootstrap: [AppComponent]
