@@ -25,4 +25,12 @@ export class ApiService {
       .set('end', end);
     return this.http.get<Flight[]>(ApiService.BASE_URL + "flights/aircraft", { params })
   }
+
+  public getAirportArrivals(airport: string, begin: number, end: number) {
+    const params = new HttpParams()
+      .set('airport', airport)
+      .set('begin', begin)
+      .set('end', end);
+    return this.http.get<Flight[]>(ApiService.BASE_URL + "airport/arrival", { params })
+  }
 }
