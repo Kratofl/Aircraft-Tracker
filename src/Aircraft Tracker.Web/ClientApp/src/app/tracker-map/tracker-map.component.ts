@@ -1,29 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from "@angular/google-maps";
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-tracker-map',
   templateUrl: './tracker-map.component.html'
 })
-export class TrackerMapComponent {
+export class TrackerMapComponent implements AfterViewInit {
 
-  constructor() {
-    let aircrafts = [
-      {
-        lat: 18.6479054,
-        lng: 90.2661764,
-      },
-      {
-        lat: 48.6479054,
-        lng: 9.2661764,
-      },
-    ]
-    for (const aircraft of aircrafts) {
-      this.addMarker({
-        lat: aircraft.lat,
-        lng: aircraft.lng
-      })
-    }
+  constructor(private _apiService: ApiService) {}
+
+  ngAfterViewInit(): void {
+     this._apiService.getAllStates().subscribe((states: any) => this.addAllAircraftToMap(states.states))
   }
 
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
@@ -35,10 +23,10 @@ export class TrackerMapComponent {
 
   markerOptions: google.maps.MarkerOptions = {
     icon: {
-      url: "assets/airplane.png",
+      url: "assets/airplane_xs.png",
       scaledSize: {
-        width: 30,
-        height: 30,
+        width: 20,
+        height: 20,
         equals(other: google.maps.Size | null): boolean {
           return other?.width == this.width && other?.height == this.height
         }
@@ -48,6 +36,19 @@ export class TrackerMapComponent {
   };
 
   aircraftPositions: google.maps.LatLngLiteral[] = [];
+
+  addAllAircraftToMap(aircrafts: []) {
+    for (const aircraft of aircrafts) {
+      let lng = aircraft[5]
+      let lat = aircraft[6]
+      if (typeof lng === "number" && typeof lat === "number") {
+        this.addMarker({
+          lat: lat,
+          lng: lng
+        })
+      }
+    }
+  }
 
   addMarker(latLngLiteral: google.maps.LatLngLiteral) {
     this.aircraftPositions.push(latLngLiteral);
