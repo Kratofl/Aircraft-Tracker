@@ -5,15 +5,12 @@ import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-tracker-map',
-  templateUrl: './tracker-map.component.html'
+  templateUrl: './tracker-map.component.html',
 })
 export class TrackerMapComponent implements AfterViewInit {
-
   aircrafts: AircraftState[] = []
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
   clickedAircraft: AircraftState | undefined;
-  markerClustererImagePath =
-    'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m';
 
   center: google.maps.LatLngLiteral = {
     lat: 48.6479054,
@@ -52,8 +49,8 @@ export class TrackerMapComponent implements AfterViewInit {
         origin_country: string = aircraft[2] as string;
         time_position: number | null = aircraft[3] as number | null;
         last_contact: number = aircraft[4] as number;
-        longitude: number | null = lng as number | null;
-        latitude: number | null = lat as number | null;
+        longitude: number = lng as number;
+        latitude: number = lat as number;
         baro_altitude: number | null = aircraft[7] as number | null;
         on_ground: boolean = aircraft[8] as boolean;
         velocity: number | null = aircraft[9] as number | null;
@@ -62,19 +59,8 @@ export class TrackerMapComponent implements AfterViewInit {
     }
   }
 
-  getPositionOfAircraft(aircraft: AircraftState): google.maps.LatLngLiteral {
-    let lat: number = aircraft.latitude as number
-    let lng: number = aircraft.longitude as number
-    return {
-      lat: lat,
-      lng: lng
-    }
-  }
-
   openInfoWindow(marker: MapMarker, aircraft: AircraftState) {
     this.clickedAircraft = aircraft;
     if (this.infoWindow != undefined) this.infoWindow.open(marker);
   }
-
-
 }

@@ -1,17 +1,25 @@
 <google-map height="80vh"
             width="100%"
             [center]="center"
-            [zoom]="3.5">
+            [zoom]="5">
 
-  <map-marker-clusterer [imagePath]="markerClustererImagePath" [maxZoom]="14">
-    <map-marker #marker="mapMarker"
-                *ngFor="let aircraft of aircrafts; let i = index"
-                [position]="getPositionOfAircraft(aircraft)"
-                [options]="markerOptions"
-                (mapClick)="openInfoWindow(marker, aircraft)"
-    ></map-marker>
-  </map-marker-clusterer>
+  <map-marker #marker="mapMarker"
+              *ngFor="let aircraft of aircrafts"
+              [position]="{lat: aircraft.latitude, lng: aircraft.longitude}"
+              [options]="markerOptions"
+              (mapClick)="openInfoWindow(marker, aircraft)"
+  ></map-marker>
 
-  <map-info-window style="color: black">{{clickedAircraft ? clickedAircraft.callsign : ""}}</map-info-window>
+  <map-info-window class="map-info">
+    <div *ngIf="clickedAircraft">
+      <h1 [textContent]="clickedAircraft.callsign"></h1>
+      <p [textContent]="'Icao24: ' + clickedAircraft.icao24">{{'<b>text</b>'}}</p>
+      <p [textContent]="'Origin: ' + clickedAircraft.origin_country"></p>
+      <p [textContent]="'Height: ' + clickedAircraft.baro_altitude + 'm'"></p>
+      <p [textContent]="'On ground : ' + clickedAircraft.on_ground"></p>
+      <p [textContent]="'Velocity: ' + clickedAircraft.velocity + 'm/s'"></p>
+      <button>Save Flight</button>
+    </div>
+  </map-info-window>
 
 </google-map>

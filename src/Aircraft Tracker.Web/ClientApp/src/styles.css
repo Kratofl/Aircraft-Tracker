@@ -17,3 +17,17 @@ code {
 
 html, body { height: 100%; }
 body { margin: 0; }
+
+/* Google maps style */
+
+.gm-style .gm-style-iw-c {
+  background-color: #373737;
+}
+
+.gm-style-iw-tc {
+  filter: drop-shadow(0 4px 2px rgba(0,0,0,.4)) !important;
+}
+
+.gm-style-iw-tc::after {
+  background: #373737 !important;
+}
