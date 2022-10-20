@@ -3,12 +3,15 @@
             [center]="center"
             [zoom]="3.5">
 
-  <map-marker #marker="mapMarker"
-              *ngFor="let pos of aircraftPositions"
-              [position]="pos"
-              [options]="markerOptions"
-              (mapClick)="openInfoWindow(marker)"></map-marker>
+  <map-marker-clusterer [imagePath]="markerClustererImagePath" [maxZoom]="14">
+    <map-marker #marker="mapMarker"
+                *ngFor="let aircraft of aircrafts; let i = index"
+                [position]="getPositionOfAircraft(aircraft)"
+                [options]="markerOptions"
+                (mapClick)="openInfoWindow(marker, aircraft)"
+    ></map-marker>
+  </map-marker-clusterer>
 
-  <map-info-window style="color: black">Info Window content</map-info-window>
+  <map-info-window style="color: black">{{clickedAircraft ? clickedAircraft.callsign : ""}}</map-info-window>
 
 </google-map>
