@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { AuthorizeService } from '../api-authorization/authorize.service';
 import { ApiService } from './services/api.service';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Home', animation: "Home" } },
@@ -36,7 +37,8 @@ const routes: Routes = [
     ApiAuthorizationModule,
     MaterialModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    GoogleMapsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
