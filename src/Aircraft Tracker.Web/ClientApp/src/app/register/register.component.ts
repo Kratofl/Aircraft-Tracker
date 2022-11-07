@@ -4,14 +4,14 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html'
+  selector: 'app-register',
+  templateUrl: './register.component.html'
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   loading: boolean = false;
 
-  loginForm = new FormGroup({
+  registerForm = new FormGroup({
     userName: new FormControl('', [Validators.required, Validators.maxLength(16)]),
     password: new FormControl('', [Validators.required]),
   });
@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(): void {
-    if (this.loginForm.valid) {
-      const data = this.loginForm.value;
+  register(): void {
+    if (this.registerForm.valid) {
+      const data = this.registerForm.value;
       this.loading = true;
 
-      this.http.post<any>(this.baseUrl + 'api/auth/login', data).subscribe(result => {
+      this.http.post<any>(this.baseUrl + 'api/auth/register', data).subscribe(result => {
         this.loading = false;
         this.router.navigate(["/"]);
       }, error => console.log(error));

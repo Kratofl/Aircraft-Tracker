@@ -12,10 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { ApiService } from './services/api.service';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Home', animation: "Home" } },
   { path: 'tracker', component: TrackerMapComponent, data: { title: 'Tracker', animation: "Tracker" } },
+  { path: 'login', component: LoginComponent, data: { title: 'Login', animation: "Login" } },
+  { path: 'register', component: RegisterComponent, data: { title: 'Register', animation: "Register" } },
 ];
 
 @NgModule({
@@ -25,6 +29,7 @@ const routes: Routes = [
     HomeComponent,
     TrackerMapComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
