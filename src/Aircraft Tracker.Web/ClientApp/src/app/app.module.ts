@@ -11,7 +11,7 @@ import { TrackerMapComponent } from './tracker-map/tracker-map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { ApiService } from './services/api.service';
-import { LoginComponent } from './login/login.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Home', animation: "Home" } },
@@ -33,7 +33,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    GoogleMapsModule
   ],
   providers: [ApiService],
   exports: [RouterModule],
