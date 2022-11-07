@@ -14,12 +14,14 @@ import { ApiService } from './services/api.service';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Home', animation: "Home" } },
   { path: 'tracker', component: TrackerMapComponent, data: { title: 'Tracker', animation: "Tracker" } },
   { path: 'login', component: LoginComponent, data: { title: 'Login', animation: "Login" } },
   { path: 'register', component: RegisterComponent, data: { title: 'Register', animation: "Register" } },
+  { path: 'logout', component: LogoutComponent, data: { title: 'Logout', animation: "Logout" } },
 ];
 
 @NgModule({
@@ -30,6 +32,7 @@ const routes: Routes = [
     TrackerMapComponent,
     LoginComponent,
     RegisterComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

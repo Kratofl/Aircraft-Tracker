@@ -71,5 +71,13 @@ namespace Aircraft_Tracker.Web.Controllers.api
             public string UserName { get; set; }
             public string Password { get; set; }
         }
+
+        [Route("logout")]
+        [HttpGet]
+        public async Task<IActionResult> LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
     }
 }
