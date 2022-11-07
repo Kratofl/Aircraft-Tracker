@@ -7,19 +7,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
-import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
-import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { TrackerMapComponent } from './tracker-map/tracker-map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
-import { AuthorizeService } from '../api-authorization/authorize.service';
 import { ApiService } from './services/api.service';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Home', animation: "Home" } },
   { path: 'tracker', component: TrackerMapComponent, data: { title: 'Tracker', animation: "Tracker" } },
+  { path: 'login', component: LoginComponent, data: { title: 'Login', animation: "Login" } },
+  { path: 'register', component: RegisterComponent, data: { title: 'Register', animation: "Register" } },
+  { path: 'logout', component: LogoutComponent, data: { title: 'Logout', animation: "Logout" } },
 ];
 
 @NgModule({
@@ -28,23 +30,21 @@ const routes: Routes = [
     NavMenuComponent,
     HomeComponent,
     TrackerMapComponent,
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ApiAuthorizationModule,
     MaterialModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     GoogleMapsModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-    AuthorizeService,
-    ApiService,
-  ],
+  providers: [ApiService],
   exports: [RouterModule],
   bootstrap: [AppComponent]
 })

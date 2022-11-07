@@ -4,6 +4,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,7 +21,8 @@ const MaterialComponents = [
   MatIconModule,
   MatDialogModule,
   MatSelectModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatProgressSpinnerModule
 ]
 
 @NgModule({
