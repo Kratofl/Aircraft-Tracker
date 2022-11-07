@@ -63,4 +63,8 @@ export class TrackerMapComponent implements AfterViewInit {
     this.clickedAircraft = aircraft;
     if (this.infoWindow != undefined) this.infoWindow.open(marker);
   }
+
+  markAircraft(icao24: string) {
+    this._apiService.postMarkedAircraft(icao24).subscribe(x => console.log(x));
+  }
 }

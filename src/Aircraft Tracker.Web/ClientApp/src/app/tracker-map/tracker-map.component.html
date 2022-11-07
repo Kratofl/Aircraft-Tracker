@@ -18,7 +18,7 @@
       <p [textContent]="'Height: ' + clickedAircraft.baro_altitude + 'm'"></p>
       <p [textContent]="'On ground : ' + clickedAircraft.on_ground"></p>
       <p [textContent]="'Velocity: ' + clickedAircraft.velocity + 'm/s'"></p>
-      <button>Save flight</button>
+      <button (click)="markAircraft(clickedAircraft.icao24)">Save flight</button>
       <button style="display: block">Get aircraft flights</button>
     </div>
   </map-info-window>
