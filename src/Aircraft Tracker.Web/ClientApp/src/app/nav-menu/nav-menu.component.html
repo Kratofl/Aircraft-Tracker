@@ -1,9 +1,9 @@
 <mat-toolbar>
   <!--<span>Aircraft Tracker</span>-->
   <!--<span><img src="/content/images/Aircraft Tracker Logo.svg" style="width: 100%; height: 100px;" /></span>-->
-  <span><img src="/content/images/Aircraft Tracker Logo without globe.svg" style="width: 100%; height: 50px;" /></span>
+  <span></span>
+  <button mat-button [routerLink]="['/']"><img src="/content/images/Aircraft Tracker Logo without globe.svg" style="width: 100%; height: 50px;" /></button>
   <span style="flex: 1 1 auto;"></span>
-  <button mat-icon-button [routerLink]="['/tracker']"><mat-icon>public</mat-icon></button>
   <button mat-icon-button [routerLink]="['/login']"><mat-icon>login</mat-icon></button>
   <button mat-icon-button [routerLink]="['/register']"><mat-icon>person_add</mat-icon></button>
   <button mat-icon-button [routerLink]="['/logout']"><mat-icon>logout</mat-icon></button>

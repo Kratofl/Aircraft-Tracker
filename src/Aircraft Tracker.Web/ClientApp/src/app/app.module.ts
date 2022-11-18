@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
 import { TrackerMapComponent } from './tracker-map/tracker-map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
@@ -17,8 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Home', animation: "Home" } },
-  { path: 'tracker', component: TrackerMapComponent, data: { title: 'Tracker', animation: "Tracker" } },
+  { path: '', component: TrackerMapComponent, pathMatch: 'full', data: { title: 'Home', animation: "Home" } },
   { path: 'login', component: LoginComponent, data: { title: 'Login', animation: "Login" } },
   { path: 'register', component: RegisterComponent, data: { title: 'Register', animation: "Register" } },
   { path: 'logout', component: LogoutComponent, data: { title: 'Logout', animation: "Logout" } },
@@ -28,7 +26,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
     TrackerMapComponent,
     LoginComponent,
     RegisterComponent,
