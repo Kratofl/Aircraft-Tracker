@@ -17,7 +17,7 @@ namespace Aircraft_Tracker.Core.Database
 
         public DbSet<MarkedFlight> MarkedFlights { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)
         {
 

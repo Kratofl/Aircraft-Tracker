@@ -1,5 +1,6 @@
 using Aircraft_Tracker.Core.Api.OpenSky;
 using Aircraft_Tracker.Core.Database;
+using Aircraft_Tracker.Core.Database.Manager;
 using Aircraft_Tracker.Core.Database.Tables;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -35,7 +36,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddSingleton<OpenSky>();
 
-//builder.Services.AddScoped<ApiManager>();
+builder.Services.AddScoped<AircraftManager>();
 
 var app = builder.Build();
 

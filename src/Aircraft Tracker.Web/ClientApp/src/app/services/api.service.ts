@@ -49,6 +49,6 @@ export class ApiService {
   }
 
   public postMarkedAircraft(icao24: string) {
-    return this.http.post(ApiService.AIRCRAFT_URL + "mark", { icao24 })
+    return this.http.post(ApiService.AIRCRAFT_URL + "mark", { FlightNr: icao24 })
   }
 }

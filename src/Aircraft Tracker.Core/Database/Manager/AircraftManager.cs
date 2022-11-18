@@ -29,7 +29,7 @@ namespace Aircraft_Tracker.Core.Database.Manager
             var markedFlight = new MarkedFlight
             {
                 FlightNr = flightNr,
-                User = user,
+                UserId = user.Id,
             };
 
             try
