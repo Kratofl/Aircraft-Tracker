@@ -1,6 +1,5 @@
 <h1 class="pb-3" style="font-weight: bold; text-align: center;">LOG IN</h1>
 <form [formGroup]="loginForm" (ngSubmit)="login()">
-  <p *ngIf="error">Fehler, Nutzername oder Password falsch</p>
   <div class="row mb-2">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Username</mat-label>
