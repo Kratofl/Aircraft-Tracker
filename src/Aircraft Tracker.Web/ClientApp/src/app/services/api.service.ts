@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Flight } from '../interfaces/flight';
+import {Name} from "../interfaces/name";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,7 @@ export class ApiService {
 
   private static BASE_URL: string = "https://localhost:44456/api/"
   private static OPENSKY_URL: string = ApiService.BASE_URL + "openSky/"
+  private static AUTH_URL: string = ApiService.BASE_URL + "auth/"
   private static AIRCRAFT_URL: string = ApiService.BASE_URL + "aircraft/"
 
   constructor(private http: HttpClient) { }
@@ -50,5 +53,9 @@ export class ApiService {
 
   public postMarkedAircraft(icao24: string) {
     return this.http.post(ApiService.AIRCRAFT_URL + "mark", { FlightNr: icao24 })
+  }
+
+  public getAuthStatus(): Observable<Name> {
+    return this.http.get<Name>(ApiService.AUTH_URL + "status")
   }
 }

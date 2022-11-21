@@ -4,9 +4,10 @@
   <span></span>
   <button mat-button [routerLink]="['/']"><img src="/content/images/Aircraft Tracker Logo without globe.svg" style="width: 100%; height: 50px;" /></button>
   <span style="flex: 1 1 auto;"></span>
-  <button mat-icon-button [routerLink]="['/login']"><mat-icon>login</mat-icon></button>
-  <button mat-icon-button [routerLink]="['/register']"><mat-icon>person_add</mat-icon></button>
-  <button mat-icon-button [routerLink]="['/logout']"><mat-icon>logout</mat-icon></button>
+  <button *ngIf="!isAuthenticated" mat-icon-button [routerLink]="['/login']"><mat-icon>login</mat-icon></button>
+  <button *ngIf="!isAuthenticated" mat-icon-button [routerLink]="['/register']"><mat-icon>person_add</mat-icon></button>
+  <button *ngIf="isAuthenticated" mat-icon-button [routerLink]="['/logout']"><mat-icon>logout</mat-icon></button>
+  <h1 *ngIf="isAuthenticated">{{name}}</h1>
 </mat-toolbar>
 
 <!--<header>

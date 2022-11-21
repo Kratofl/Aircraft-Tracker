@@ -1,5 +1,6 @@
 <h1 class="pb-3" style="font-weight: bold; text-align: center;">LOG IN</h1>
 <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <p *ngIf="error">Fehler, Nutzername oder Password falsch</p>
   <div class="row mb-2">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Username</mat-label>
@@ -17,7 +18,7 @@
   <div class="d-flex justify-content-center">
     <button type="submit" mat-flat-button color="primary" [disabled]="loading">
       <mat-spinner [diameter]="24" [strokeWidth]="4" *ngIf="loading"></mat-spinner>
-      <span *ngIf="!loading">Register</span>
+      <span *ngIf="!loading">Login</span>
     </button>
   </div>
 </form>

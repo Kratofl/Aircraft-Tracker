@@ -1,6 +1,7 @@
 <h1 class="pb-3" style="font-weight: bold; text-align: center;">REGISTER</h1>
 <form [formGroup]="registerForm" (ngSubmit)="register()">
   <div class="row mb-2">
+    <p *ngIf="error">{{error.error}}</p>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Username</mat-label>
       <input matInput formControlName="userName" required>
@@ -12,6 +13,7 @@
       <mat-label>Password</mat-label>
       <input type="password" matInput formControlName="password" required>
       <mat-error *ngIf="registerForm.controls.password.invalid">{{getErrorMessage(registerForm.controls.password)}}</mat-error>
+      <mat-hint>Mind. 8 Zeichen, 1 Nummer, 1 Sonderzeichen</mat-hint>
     </mat-form-field>
   </div>
   <div class="d-flex justify-content-center">

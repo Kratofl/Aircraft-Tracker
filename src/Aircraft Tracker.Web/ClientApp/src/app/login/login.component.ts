@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {AuthError} from "../interfaces/AuthError";
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loading: boolean = false;
+  error: AuthError | undefined;
 
   loginForm = new FormGroup({
     userName: new FormControl('', [Validators.required, Validators.maxLength(16)]),
@@ -29,7 +31,11 @@ export class LoginComponent implements OnInit {
       this.http.post<any>(this.baseUrl + 'api/auth/login', data).subscribe(result => {
         this.loading = false;
         this.router.navigate(["/"]);
-      }, error => console.log(error));
+      }, (error: AuthError) => {
+          console.log(error)
+          this.error = error;
+          this.loading = false;
+      });
     }
   }
 

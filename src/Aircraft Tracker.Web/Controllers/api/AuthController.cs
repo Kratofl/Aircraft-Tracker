@@ -1,4 +1,5 @@
 ﻿using Aircraft_Tracker.Core.Database.Tables;
+using Duende.IdentityServer.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -78,6 +79,17 @@ namespace Aircraft_Tracker.Web.Controllers.api
         {
             await _signInManager.SignOutAsync();
             return Ok();
+        }
+
+        [Route("status")]
+        [HttpGet]
+        public async Task<IActionResult> StatusAsync()
+        {
+            if (!User.IsAuthenticated()) {
+                return Unauthorized();
+            }
+
+            return Ok(new { User.Identity.Name });
         }
     }
 }
